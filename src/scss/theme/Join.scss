@@ -1,0 +1,65 @@
+.titleWelcome {
+  display: flex;
+  justify-content: center;
+
+  height: 50px;
+  font-size: 36px;
+}
+.desc {
+  display: flex;
+  justify-content: center;
+
+  height: 30px;
+  font-size: 24px;
+}
+
+.infos {
+  li {
+    margin-left: 30px;
+  }
+  ul {
+    display: flex;
+    font-size: 16px;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+
+.formStart {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  input {
+    width: 300px;
+    padding: 10px;
+  }
+  button {
+    width: 50px;
+  }
+}
+
+.nameFeedback {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.bitcoin {
+  margin-top: 40px;
+}
+
+.bitcoin p {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.ok {
+  color: green !important;
+}
+.taken {
+  color: red !important;
+}
