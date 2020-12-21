@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { socket } from "./../../socket";
+import { socket } from "./../../util/socket";
 import { Tags } from "../Tags/Tags";
 
 export const Join = () => {
