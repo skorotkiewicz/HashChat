@@ -39,3 +39,10 @@ export const setUsersModalOpen = (msg) => {
     payload: msg,
   };
 };
+//
+export const setTranslation = (msg) => {
+  return {
+    type: "setTranslation",
+    payload: msg,
+  };
+};

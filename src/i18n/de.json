@@ -1,0 +1,56 @@
+{
+  "join": {
+    "t1": "Chatten mit einer Person mit den gleichen Tags wie Sie!",
+    "t2": "keine logs",
+    "t3": "keine Cookies",
+    "t4": "keine Speicherung",
+    "t5": "keine Registrierung",
+    "t6": "Verschlüsselung",
+    "t7": "opensource",
+    "t8": "Die Verschlüsselung der Nachrichten erfolgt mit öffentlichen und privaten Bitcoin-Schlüsseln.",
+    "t9": "Ihre Bitcoin-Adresse mit den Schlüsseln wird auf Ihrem Gerät generiert.",
+    "t10": "Nur der öffentliche Schlüssel und die Adresse werden an Ihren Chatpartner gesendet.",
+    "t11": "Name",
+    "t12": "mindestens 3 Zeichen",
+    "t13": "Tags",
+    "t14": "mindestens 3 Zeichen und Leerzeichen zwischen den Tags",
+    "t15": "Ihre Tags",
+    "t16": "auch mindestens 3 Zeichen",
+    "t17": "Name und mindestens 1 Tag eingeben",
+    "t18": "Benutzername ist verfügbar",
+    "t19": "Benutzername ist vergeben",
+    "t20": "Beginnen"
+  },
+  "input": {
+    "t1": "Geben Sie eine Nachricht ein...",
+    "t2": "Senden"
+  },
+  "details": {
+    "t1": "Klicken Sie, um Ihre Bitcoin-Adresse mit Schlüssel anzuzeigen",
+    "t2": "Öffentliche Adresse:",
+    "t3": "Öffentlicher Schlüssel (wird zum Verschlüsseln/Entschlüsseln von Nachrichten verwendet):",
+    "t4": "Privater Schlüssel (nicht mit anderen teilen!):",
+    "t5": "Die Schlüssel werden nirgends gespeichert, wenn Sie aus irgendeinem Grund Ihre aktuelle Bitcoin-Adresse behalten wollen, speichern Sie den privaten Schlüssel lokal!",
+    "t6": "Sobald Sie die Seite erneut besuchen, wird eine neue Bitcoin-Adresse generiert.",
+    "t7": "Sie sind nicht verbunden, laden Sie diese Seite neu.",
+    "t8": "Hallo! Um den Chat zu starten, klicken Sie auf den Benutzer von",
+    "t9": "linken",
+    "t10": "oberen",
+    "t11": "Benutzerliste."
+  },
+  "panel": {
+    "t1": "Jetzt chatten Sie mit",
+    "t2": "Bitcoin",
+    "t3": "Hallo",
+    "t4": "Ihre Tags:",
+    "t5": "schreibt"
+  },
+  "users": {
+    "t1": "Chattet mit",
+    "t2": "Passende Benutzer",
+    "t3": "Keine übereinstimmenden Benutzer",
+    "t4": "Sie können auf den Benutzer warten oder es mit einem anderen Tag versuchen.",
+    "t5": "Okay",
+    "t6": "Benutzerliste"
+  }
+}

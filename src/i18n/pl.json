@@ -1,0 +1,56 @@
+{
+  "join": {
+    "t1": "Rozmawiaj z osobą z takimi samymi tagami co Ty!",
+    "t2": "zero logów",
+    "t3": "zero ciasteczek",
+    "t4": "zero zapisywania",
+    "t5": "zero rejestracji",
+    "t6": "szyfrowanie",
+    "t7": "open source",
+    "t8": "Szyfrowanie wiadomości odbywa się przez publiczny i prywatny klucz Bitcoina.",
+    "t9": "Twój adres Bitcoina z kluczami jest generowany na twoim urządzeniu.",
+    "t10": "Tylko klucz publiczny i adres jest wysyłany do twojego partnera na czacie.",
+    "t11": "Imię",
+    "t12": "co najmniej 3 znaki",
+    "t13": "Tagi",
+    "t14": "także co najmniej 3 znaki i spacja między tagami",
+    "t15": "Dodaj Tag",
+    "t16": "także co najmniej 3 znaki",
+    "t17": "Wpisz imię i przynajmniej 1 tag",
+    "t18": "Imię jest dostępne",
+    "t19": "Podane imię jest już zajęte",
+    "t20": "Zaczynajmy"
+  },
+  "input": {
+    "t1": "Wpisz swoją wiadomość...",
+    "t2": "Wyślij"
+  },
+  "details": {
+    "t1": "Kliknij, aby wyświetlić swój adres Bitcoina z kluczami",
+    "t2": "Publiczny adres:",
+    "t3": "Klucz publiczny (używany do szyfrowania/odszyfrowywania wiadomości):",
+    "t4": "Klucz prywatny (nie dziel się z innymi!):",
+    "t5": "Klucze nie są nigdzie zapisywane, jeśli z jakiegoś powodu chcesz zachować swój aktualny adres Bitcoina, zapisz prywatny klucz lokalnie!",
+    "t6": "Po ponownym wejściu na stronę, zostanie wygenerowany nowy adres Bitcoina.",
+    "t7": "Nie jesteś podłączony, odśwież tę stronę.",
+    "t8": "Witaj! Aby rozpocząć czat, kliknij na użytkownika z",
+    "t9": "lewej",
+    "t10": "górnej",
+    "t11": "listy."
+  },
+  "panel": {
+    "t1": "Rozmawiasz z",
+    "t2": "- adres Bitcoina: ",
+    "t3": "Witaj",
+    "t4": "twoje tagi: ",
+    "t5": "pisze"
+  },
+  "users": {
+    "t1": "Napisz do",
+    "t2": "Dopasowani użytkownicy",
+    "t3": "Brak dopasowanych użytkowników",
+    "t4": "Możesz poczekać na użytkownika lub spróbować z innym tagiem.",
+    "t5": "Ok",
+    "t6": "Użytkownicy"
+  }
+}

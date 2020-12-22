@@ -44,3 +44,12 @@ export const usersModalOpen = (state = false, action) => {
       return state;
   }
 };
+//
+export const translation = (state = [], action) => {
+  switch (action.type) {
+    case "setTranslation":
+      return action.payload;
+    default:
+      return state;
+  }
+};

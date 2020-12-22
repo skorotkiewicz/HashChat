@@ -15,6 +15,7 @@ export const Users = React.memo(({ refCurrent }) => {
   const users = useSelector((state) => state.users);
   const offline = useSelector((state) => state.offline);
   const open = useSelector((state) => state.usersModalOpen);
+  const t = useSelector((state) => state.translation.users);
 
   const UserList = () => {
     return (
@@ -81,7 +82,7 @@ export const Users = React.memo(({ refCurrent }) => {
                 }
               }}
             >
-              Chat with {name}
+              {t.t1} {name}
             </Button>
           </div>
         ))}
@@ -93,13 +94,15 @@ export const Users = React.memo(({ refCurrent }) => {
     <div className="users box">
       {users.length >= 1 ? (
         <>
-          <h1 className="userstitle">Match users ({users.length})</h1>
+          <h1 className="userstitle">
+            {t.t2} ({users.length})
+          </h1>
           <UserList />
         </>
       ) : (
         <div className="noMatched">
-          <p className="no">No matched users</p>
-          <p>You can wait for the user or try with another tag.</p>
+          <p className="no">{t.t3}</p>
+          <p>{t.t4}</p>
         </div>
       )}
     </div>

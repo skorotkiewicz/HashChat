@@ -1,48 +1,58 @@
-export const BitcoinDetails = ({ bitcoin }) => {
+import { List } from "semantic-ui-react";
+
+export const BitcoinDetails = ({ bitcoin, t }) => {
   return (
     <>
       {bitcoin && (
-        <details>
-          <hr />
-          <summary>Click to show your bitcoin address with keys</summary>
-          <span>
-            Public address: <br></br>
-            <strong>{bitcoin.address}</strong>
-          </span>
-          <hr />
-          <span>
-            Public key: (used to encrypt/decrypt messages)<br></br>
-            <strong>{bitcoin.pubkey}</strong>
-          </span>
-          <hr />
-          <span>
-            Private key (don't share with others!): <br></br>
-            <strong>{bitcoin.privkey}</strong>
-          </span>
+        <>
+          <details>
+            <summary>{t.t1}</summary>
+            <List celled>
+              <List.Item>
+                <List.Content>
+                  <List.Header>{t.t2}</List.Header>
+                  {bitcoin.address}
+                </List.Content>
+              </List.Item>
 
-          <span className="infoKeys">
-            The keys are not saved anywhere, if for some reason you want to keep
-            your current bitcoin address save the private key locally!
-            <br />
-            Once you visit the site again, a new bitcoin address will be
-            generated.
-          </span>
-        </details>
+              <List.Item>
+                <List.Content>
+                  <List.Header>{t.t3} </List.Header>
+                  {bitcoin.pubkey}
+                </List.Content>
+              </List.Item>
+
+              <List.Item>
+                <List.Content>
+                  <List.Header>{t.t4}</List.Header>
+                  {bitcoin.privkey}
+                </List.Content>
+              </List.Item>
+
+              <List.Item>
+                <List.Content>
+                  {t.t5}
+                  <br />
+                  {t.t6}
+                </List.Content>
+              </List.Item>
+            </List>
+          </details>
+        </>
       )}
     </>
   );
 };
 
-export const WelcomeDetails = ({ myId }) => {
+export const WelcomeDetails = ({ myId, t }) => {
   return (
     <div className="welcome">
       {!myId ? (
-        <h4>You are not connected, reload this page.</h4>
+        <h4>{t.t7}.</h4>
       ) : (
         <h3>
-          Hello! To start chat, click the user from{" "}
-          <span className="welcomeInfoList-left">left</span>
-          <span className="welcomeInfoList-top">top</span> userlist.{" "}
+          {t.t8} <span className="welcomeInfoList-left">{t.t9}</span>
+          <span className="welcomeInfoList-top">{t.t10}</span> {t.t11}
         </h3>
       )}
     </div>

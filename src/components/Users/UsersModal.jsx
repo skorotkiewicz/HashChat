@@ -8,6 +8,7 @@ export const UsersModal = ({ UsersList }) => {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.usersModalOpen);
   const unread = useSelector((state) => state.unread);
+  const t = useSelector((state) => state.translation.users);
 
   return (
     <Modal
@@ -21,7 +22,7 @@ export const UsersModal = ({ UsersList }) => {
       trigger={
         <Menu compact style={{ marginRight: 15, marginTop: 10 }}>
           <Menu.Item>
-            <Icon name="users" /> Users list
+            <Icon name="users" /> {t.t6}
             {unread.length > 0 && (
               <Label color="red" floating>
                 {unread.length}
@@ -42,7 +43,7 @@ export const UsersModal = ({ UsersList }) => {
           }}
           primary
         >
-          Okay
+          {t.t5}
         </Button>
       </Modal.Actions>
     </Modal>

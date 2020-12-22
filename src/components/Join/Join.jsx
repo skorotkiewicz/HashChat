@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import { socket } from "./../../util/socket";
 import { Panel } from "../Panel/Panel";
+import { useSelector } from "react-redux";
 
 export const Join = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,9 @@ export const Join = () => {
 
   const [comp, setComp] = useState(true);
   const [next, setNext] = useState(false);
+
+  // redux
+  const t = useSelector((state) => state.translation.join);
 
   useEffect(() => {
     if (name.length >= 3) {
@@ -38,64 +42,51 @@ export const Join = () => {
               <div className="card_section">
                 <span className="card_title">HashChat</span>
 
-                <span className="card_subTitle">
-                  Simple chat with person with same tags as you!
-                </span>
+                <span className="card_subTitle">{t.t1}</span>
 
                 <List celled horizontal>
-                  <List.Item>no logs</List.Item>
-                  <List.Item>no cookies</List.Item>
-                  <List.Item>no storage</List.Item>
-                  <List.Item>no registration</List.Item>
-                  <List.Item>encryption</List.Item>
-                  <List.Item>opensource</List.Item>
+                  <List.Item>{t.t2}</List.Item>
+                  <List.Item>{t.t3}</List.Item>
+                  <List.Item>{t.t4}</List.Item>
+                  <List.Item>{t.t5}</List.Item>
+                  <List.Item>{t.t6}</List.Item>
+                  <List.Item>{t.t7}</List.Item>
                 </List>
 
                 <div className="card_section">
-                  <p>
-                    Encryption of the messages is handled by Bitcoin public and
-                    private keys.
-                  </p>
-                  <p>
-                    Your Bitcoin address with the keys is generated on your
-                    device.
-                  </p>
-                  <p>
-                    Only the public key and the address is sent to your chat
-                    partner.
-                  </p>
+                  <p>{t.t8}</p>
+                  <p>{t.t9}</p>
+                  <p>{t.t10}</p>
                 </div>
               </div>
 
               <div className="card_section">
                 <Segment.Group>
                   <Header as="h5" attached="top">
-                    Name <br /> <small>(least 3 characters)</small>
+                    {t.t11} <br /> <small>({t.t12})</small>
                   </Header>
                   <Segment attached>
                     <Input
                       style={{ width: "100%" }}
                       label={{ icon: "asterisk" }}
                       labelPosition="left corner"
-                      placeholder="Name... (least 3 characters)"
+                      placeholder={`${t.t11}... (${t.t12})`}
                       onChange={(e) =>
                         setName(e.target.value.trim().toLowerCase())
                       }
                     />
                   </Segment>
                   <Header as="h5" attached>
-                    Tags <br />
-                    <small>
-                      (also at least 3 characters and space between tags)
-                    </small>
+                    {t.t13} <br />
+                    <small>({t.t14})</small>
                   </Header>
                   <Segment attached>
                     <Input
                       icon="tags"
                       iconPosition="left"
-                      label={{ tag: true, content: "Add Tag" }}
+                      label={{ tag: true, content: t.t15 }}
                       labelPosition="right"
-                      placeholder="also at least 3 characters"
+                      placeholder={t.t16}
                       onChange={(e) => setTags(e.target.value)}
                       onKeyPress={(e) => {
                         if (e.key === "Enter") {
@@ -122,14 +113,14 @@ export const Join = () => {
                         }
                       }}
                     >
-                      Join
+                      {t.t20}
                     </Button>
                   </Segment>
 
                   {validate === false && (
                     <Message warning attached="bottom">
                       <Icon name="warning" />
-                      Enter name and least 1 tag
+                      {t.t17}
                     </Message>
                   )}
 
@@ -137,9 +128,9 @@ export const Join = () => {
                     <Message success attached="bottom">
                       <div className="nameFeedback">
                         {check ? (
-                          <div className="nick ok">Username is available</div>
+                          <div className="nick ok">{t.t18}</div>
                         ) : (
-                          <div className="nick taken">Username is taken</div>
+                          <div className="nick taken">{t.t19}</div>
                         )}
                       </div>
                     </Message>

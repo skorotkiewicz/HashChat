@@ -1,0 +1,56 @@
+{
+  "join": {
+    "t1": "Simple chat with person with same tags as you!",
+    "t2": "no logs",
+    "t3": "no cookies",
+    "t4": "no storage",
+    "t5": "no registration",
+    "t6": "encryption",
+    "t7": "opensource",
+    "t8": "Encryption of the messages is handled by Bitcoin public and private keys.",
+    "t9": "Your Bitcoin address with the keys is generated on your device.",
+    "t10": "Only the public key and the address is sent to your chat partner.",
+    "t11": "Name",
+    "t12": "least 3 characters",
+    "t13": "Tags",
+    "t14": "also at least 3 characters and space between tags",
+    "t15": "Add Tag",
+    "t16": "also at least 3 characters",
+    "t17": "Enter name and least 1 tag",
+    "t18": "Username is available",
+    "t19": "Username is taken",
+    "t20": "Join"
+  },
+  "input": {
+    "t1": "Type a message...",
+    "t2": "Send"
+  },
+  "details": {
+    "t1": "Click to show your bitcoin address with keys",
+    "t2": "Public address:",
+    "t3": "Public key (used to encrypt/decrypt messages):",
+    "t4": "Private key (don't share with others!):",
+    "t5": "The keys are not saved anywhere, if for some reason you want to  keep your current bitcoin address save the private key locally!",
+    "t6": "Once you visit the site again, a new bitcoin address will be generated.",
+    "t7": "You are not connected, reload this page.",
+    "t8": "Hello! To start chat, click the user from",
+    "t9": "left",
+    "t10": "top",
+    "t11": "userlist."
+  },
+  "panel": {
+    "t1": "Now you are chatting with",
+    "t2": "'s bitcoin",
+    "t3": "Hello",
+    "t4": "your tags: ",
+    "t5": "is typing"
+  },
+  "users": {
+    "t1": "Chat with",
+    "t2": "Matched users",
+    "t3": "No matched users",
+    "t4": "You can wait for the user or try with another tag.",
+    "t5": "Okay",
+    "t6": "User list"
+  }
+}

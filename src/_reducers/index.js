@@ -1,5 +1,12 @@
 import { combineReducers } from "redux";
-import { current, unread, users, offline, usersModalOpen } from "./app";
+import {
+  current,
+  unread,
+  users,
+  offline,
+  usersModalOpen,
+  translation,
+} from "./app";
 
 const allReducer = combineReducers({
   current,
@@ -7,6 +14,7 @@ const allReducer = combineReducers({
   users,
   offline,
   usersModalOpen,
+  translation,
 });
 
 export default allReducer;

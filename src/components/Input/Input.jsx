@@ -6,6 +6,7 @@ export const Input = ({
   ftyping,
   setTypingA,
   typingA,
+  t,
 }) => {
   const send = (e) => {
     e.preventDefault();
@@ -19,9 +20,8 @@ export const Input = ({
       <form className="input-form">
         <input
           type="text"
-          placeholder="Type a message..."
+          placeholder={t.t1}
           value={message}
-          // disabled={current.id ? false : true}
           onChange={(e) => {
             if (typingA === false) {
               ftyping(current, setTypingA, true);
@@ -34,12 +34,7 @@ export const Input = ({
             }
           }}
         />
-        <button
-          // disabled={current.id ? false : true}
-          onClick={(e) => send(e)}
-        >
-          Send
-        </button>
+        <button onClick={(e) => send(e)}>{t.t2}</button>
       </form>
     </div>
   );

@@ -23,6 +23,8 @@ export const Panel = ({ name, tags }) => {
   const unread = useSelector((state) => state.unread);
   const current = useSelector((state) => state.current);
   const users = useSelector((state) => state.users);
+  const t = useSelector((state) => state.translation);
+  const offline = useSelector((state) => state.offline);
 
   const refCurrent = useRef([]);
 
@@ -141,17 +143,22 @@ export const Panel = ({ name, tags }) => {
             </div>
             {current.id ? (
               <>
-                Now you are chatting with: <strong>{current.name}</strong>
+                {t.panel.t1}: <strong>{current.name}</strong>
                 <br></br>
                 <small>
-                  [ <strong>{current.name}'s bitcoin</strong> {current.address}{" "}
-                  ]
+                  [{" "}
+                  <strong>
+                    {current.name} {t.panel.t2}
+                  </strong>{" "}
+                  {current.address} ]
                 </small>
               </>
             ) : (
               <>
-                Hello {name},<br></br>
-                <small>your tags: {tags}</small>
+                {t.panel.t3} {name},<br></br>
+                <small>
+                  {t.panel.t4} {tags}
+                </small>
               </>
             )}
           </div>
@@ -170,19 +177,28 @@ export const Panel = ({ name, tags }) => {
           {current.id && (
             <div className="right-input">
               {typingB.status && (
-                <div className="typing">
-                  <span>{current.name} is typing</span>
-                </div>
+                <>
+                  {current.id === typingB.id && (
+                    <div className="typing">
+                      <span>
+                        {current.name} {t.panel.t5}...
+                      </span>
+                    </div>
+                  )}
+                </>
               )}
-              <Input
-                current={current}
-                message={message}
-                setMessage={setMessage}
-                sendMessage={sendMessage}
-                ftyping={ftyping}
-                setTypingA={setTypingA}
-                typingA={typingA}
-              />
+              {!offline.includes(current.id) && (
+                <Input
+                  current={current}
+                  message={message}
+                  setMessage={setMessage}
+                  sendMessage={sendMessage}
+                  ftyping={ftyping}
+                  setTypingA={setTypingA}
+                  typingA={typingA}
+                  t={t.input}
+                />
+              )}
             </div>
           )}
         </div>

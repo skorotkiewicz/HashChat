@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 export const Messages = React.memo(({ myId, messages, bitcoin, decrypt }) => {
   // redux state
   const current = useSelector((state) => state.current);
+  const t = useSelector((state) => state.translation);
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -14,9 +15,9 @@ export const Messages = React.memo(({ myId, messages, bitcoin, decrypt }) => {
 
   return (
     <>
-      <BitcoinDetails bitcoin={bitcoin} />
+      <BitcoinDetails t={t.details} bitcoin={bitcoin} />
       <Comment.Group>
-        {current.length === 0 && <WelcomeDetails myId={myId} />}
+        {current.length === 0 && <WelcomeDetails t={t.details} myId={myId} />}
         {messages.map((msg, i) => (
           <div key={i}>
             {current.id && (
