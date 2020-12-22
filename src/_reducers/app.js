@@ -36,3 +36,11 @@ export const offline = (state = [], action) => {
   }
 };
 //
+export const usersModalOpen = (state = false, action) => {
+  switch (action.type) {
+    case "setUsersModalOpen":
+      return action.payload;
+    default:
+      return state;
+  }
+};

@@ -1,12 +1,22 @@
 @charset "utf-8";
 
+//main 4 colors
+$main: #383e56 !default;
+$users: #d4b5b0 !default;
+$info: #f69e7b !default;
+$content: #eedad1 !default;
+// extra
+$typing: #d4b5b0 !default;
+$white: #fff !default;
+$eee: #eee !default;
+$infos: #1e1f27 !default;
+
+// $main: #14274e !default;
+// $users: #9ba4b4 !default;
+// $info: #394867 !default;
+// $content: #f1f6f9 !default;
+// $infos: whitesmoke !default;
+
 // Imports
-@import
-     "theme/Index.scss",
-     "theme/Input.scss",
-     "theme/Join.scss",
-     "theme/Messages.scss",
-     "theme/Panel.scss",
-     "theme/Tags.scss",
-     "theme/Users.scss"
-;
+@import "theme/Index.scss", "theme/Input.scss", "theme/Join.scss",
+  "theme/Messages.scss", "theme/Panel.scss", "theme/Users.scss";

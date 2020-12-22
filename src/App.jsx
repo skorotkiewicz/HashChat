@@ -1,17 +1,8 @@
-// import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Join } from "./components";
+import { Join } from "./components/Join/Join";
+import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
   return <Join />;
-  // return (
-  //   <Router>
-  //     <Route path="/" exact>
-  //       <Join />
-  //     </Route>
-  //     {/* <Route path="/" exact component={Join} /> */}
-  //     {/* <Route path="/chat" component={Chat} /> */}
-  //   </Router>
-  // );
 };
 
 export default App;

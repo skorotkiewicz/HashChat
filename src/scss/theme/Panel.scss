@@ -1,127 +1,135 @@
-.user {
-  border: 2px solid rgb(190, 190, 190);
-  margin: 10px;
-  padding: 5px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
-  grid-template-rows: 0.2fr 2.6fr 0.2fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "stats userinfo"
-    "users log"
-    "users input";
-
-  grid-gap: 1px;
-  height: 100vh;
-}
-
-.users {
-  grid-area: users;
-  background-color: #d4b5b0;
-}
-
-.log {
-  grid-area: log;
-}
-
-.input {
-  grid-area: input;
-}
-
-.input input {
+.flex-container {
   display: flex;
-
-  width: 100%;
-  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.stats {
-  grid-area: stats;
-}
+.flex-left {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 20vw;
 
-.userinfo {
-  grid-area: userinfo;
-  padding: 5px;
-}
+  .left-stats {
+    height: 50px;
+    background-color: $main;
+    border-right: 1px solid $main;
 
-.q {
-  grid-area: q;
-}
-
-.btn {
-  grid-area: btn;
-}
-
-.globalOnline {
-  color: #d4b5b0;
-  display: block;
-  margin: 15px;
-}
-
-.stats p {
-  color: #eedad1;
-  margin: 5px;
-}
-
-details {
-  font-size: smaller;
-  background-color: #f3c7b2;
-  /* background-color: #ffaf90; */
-  padding: 5px;
-  margin-bottom: 5px;
-}
-details span {
-  display: block;
-}
-details hr {
-  border: 0.5px solid #ff8c5e;
-}
-
-/* .grid-container {
-    background-color: #383e56 !important;
+    p {
+      color: $content;
+      padding: 5px;
+    }
   }
-  .users {
-    background-color: #d4b5b0 !important;
+  .left-users {
+    flex: 1 1 0;
+    background-color: $users;
+    border-top: 1px solid $main;
+    border-right: 1px solid $main;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
-  .log {
-    background-color: #eedad1 !important;
+}
+
+//
+
+.flex-right {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 80vw;
+
+  .right-infos {
+    height: 50px;
+    background-color: $info;
+    padding: 5px;
+    color: $infos;
   }
-  .userinfo {
-    background-color: #f69e7b !important;
+  .right-content {
+    flex: 1 1 0;
+    background-color: $content;
+    border-top: 1px solid $main;
+    border-bottom: 1px solid $main;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    .comments {
+      padding-left: 10px;
+    }
   }
-  .active {
-    border: 2px solid #383e56 !important;
+  .right-input {
+    .input-form {
+      display: flex;
+      flex-direction: row;
+      width: 80vw;
+
+      input {
+        flex: 1 1 0;
+        height: 50px;
+        border: 0;
+      }
+      button {
+        width: 70px;
+        height: 50px;
+        border: 0;
+      }
+    }
+    @media only screen and (max-width: 950px) {
+      .input-form {
+        width: 100vw;
+      }
+    }
   }
+}
+
+.usersListModal {
+  display: none;
+}
+.welcomeInfoList-top {
+  display: none;
+}
+.ui.modal {
   .user {
-    background-color: #eedad1 !important;
-  } */
+    background-color: $eee !important;
+  }
+}
+.me {
+  margin: 10px;
+  color: $white;
+}
+.typing {
+  background-color: $typing;
+  border-bottom: 1px solid $main;
+}
+// .ui.modal {
+//   .header {
+//     background-color: #d6aea6 !important;
+//   }
+//   .content {
+//     background-color: $users !important;
+//   }
+//   .actions {
+//     background-color: #d6aea6 !important;
+//   }
+// }
 
-.grid-container {
-  background-color: #383e56 !important;
-}
-.users {
-  background-color: #d4b5b0 !important;
-}
-.log {
-  background-color: #eedad1 !important;
-}
-.userinfo {
-  background-color: #f69e7b !important;
-}
-.active {
-  border: 2px solid #383e56 !important;
-}
-.user {
-  background-color: #eedad1 !important;
-}
-.offline {
-  background-color: rgb(150, 150, 150) !important;
-}
-.offlineInfo {
-  color: #202020;
-  font-weight: lighter;
-  background-color: #808080;
+@media only screen and (max-width: 950px) {
+  .welcomeInfoList-left {
+    display: none;
+  }
+  .welcomeInfoList-top {
+    display: inline;
+  }
+
+  .flex-left {
+    display: none;
+  }
+  .usersListModal {
+    display: inline;
+    float: right;
+  }
+  .flex-right {
+    width: 100vw;
+  }
 }

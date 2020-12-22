@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { socket, ftyping } from "./../../util/socket";
+import { Label, Image } from "semantic-ui-react";
 import { Users } from "./../Users/Users";
+import { UsersModal } from "./../Users/UsersModal";
 import { Messages } from "./../Messages/Messages";
 import { Input } from "./../Input/Input";
 import { Bitcoin, encrypt, decrypt } from "./../../util/bitcoin";
@@ -87,11 +89,10 @@ export const Panel = ({ name, tags }) => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    let message = e.target.value;
 
-    dispatch(setUnread(unread.filter((e) => e !== current.id)));
-    // dont remove from list, mark user as offline, for access old messages :)
-    // setUnread(unread.filter((e) => e !== current.id));
+    if (unread && unread.includes(current.id)) {
+      dispatch(setUnread(unread.filter((e) => e !== current.id)));
+    }
 
     const encrypted = encrypt(current.pubkey, bitcoin.privkey, message);
 
@@ -113,43 +114,76 @@ export const Panel = ({ name, tags }) => {
 
   return (
     <div>
-      <div className="grid-container">
-        <Users refCurrent={refCurrent} />
-        <Messages
-          messages={messages}
-          setMessages={setMessages}
-          myId={myId}
-          current={current}
-          bitcoin={bitcoin}
-          decrypt={decrypt}
-          typingB={typingB}
-        />
-        <Input
-          current={current}
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-          ftyping={ftyping}
-          setTypingA={setTypingA}
-          typingA={typingA}
-        />
-        <div className="stats box">
-          {!myId ? "No connection" : <p>nick:[{name}]</p>}
+      <div className="flex-container">
+        <div className="flex-left">
+          <div className="left-stats">
+            {!myId ? (
+              "No connection"
+            ) : (
+              <div className="me">
+                <Label color="blue" image>
+                  <Image
+                    src={`https://robohash.org/${name}.png?bgset=bg2&size=100x100`}
+                  />
+                  {name}
+                </Label>
+              </div>
+            )}
+          </div>
+          <div className="left-users">
+            <Users refCurrent={refCurrent} />
+          </div>
         </div>
-        <div className="userinfo box">
-          {current.id ? (
-            <>
-              Now you are chatting with: <strong>{current.name}</strong>
-              <br></br>
-              <small>
-                [ <strong>{current.name}'s bitcoin</strong> {current.address} ]
-              </small>
-            </>
-          ) : (
-            <>
-              Hello {name},<br></br>
-              <small>your tags: {tags}</small>
-            </>
+        <div className="flex-right">
+          <div className="right-infos">
+            <div className="usersListModal">
+              {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
+            </div>
+            {current.id ? (
+              <>
+                Now you are chatting with: <strong>{current.name}</strong>
+                <br></br>
+                <small>
+                  [ <strong>{current.name}'s bitcoin</strong> {current.address}{" "}
+                  ]
+                </small>
+              </>
+            ) : (
+              <>
+                Hello {name},<br></br>
+                <small>your tags: {tags}</small>
+              </>
+            )}
+          </div>
+          <div className="right-content">
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              myId={myId}
+              current={current}
+              bitcoin={bitcoin}
+              decrypt={decrypt}
+              typingB={typingB}
+            />
+          </div>
+
+          {current.id && (
+            <div className="right-input">
+              {typingB.status && (
+                <div className="typing">
+                  <span>{current.name} is typing</span>
+                </div>
+              )}
+              <Input
+                current={current}
+                message={message}
+                setMessage={setMessage}
+                sendMessage={sendMessage}
+                ftyping={ftyping}
+                setTypingA={setTypingA}
+                typingA={typingA}
+              />
+            </div>
           )}
         </div>
       </div>

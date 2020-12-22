@@ -32,3 +32,10 @@ export const addOffline = (msg) => {
     payload: msg,
   };
 };
+//
+export const setUsersModalOpen = (msg) => {
+  return {
+    type: "setUsersModalOpen",
+    payload: msg,
+  };
+};

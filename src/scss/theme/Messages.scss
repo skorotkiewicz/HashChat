@@ -1,50 +1,3 @@
-.log {
-  padding: 5px;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-
-  li {
-    list-style: none;
-    display: flex;
-  }
-  .time {
-    /* color: #383e56; */
-    width: 50px;
-  }
-  .name {
-    /* color: #383e56; */
-    margin-right: 5px;
-    /* width: 10%; */
-  }
-  .seperator {
-    /* color: #383e56; */
-    width: 12px;
-  }
-}
-
-.from {
-  .time,
-  .name {
-    color: green;
-    font-size: smaller;
-  }
-}
-
-.to {
-  .time,
-  .name {
-    color: orangered;
-    font-size: smaller;
-  }
-}
-
-.name {
-  font-style: italic;
-}
-.userMsg {
-  color: #383e56;
-}
-
 .welcome {
   h4,
   h3 {
@@ -52,9 +5,20 @@
     font-weight: lighter;
   }
 }
-
 .infoKeys {
   font-size: 12px;
   margin-top: 5px;
   border-top: 1px solid orangered;
+}
+details {
+  font-size: smaller;
+  background-color: #f3c7b2;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+details span {
+  display: block;
+}
+details hr {
+  border: 0.5px solid #ff8c5e;
 }
