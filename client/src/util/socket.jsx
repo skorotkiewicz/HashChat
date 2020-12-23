@@ -1,7 +1,5 @@
 import io from "socket.io-client";
 
-// socket = io(ENDPOINT, { autoConnect: true, reconnection: true });
-
 let ENDPOINT =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000/"

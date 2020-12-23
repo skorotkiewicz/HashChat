@@ -39,7 +39,7 @@ export const Join = () => {
         <div className="joinScreen">
           <div className="index_container">
             <div className="card_wrapper">
-              <div className="card_section">
+              <div className="card_section center">
                 <span className="card_title">HashChat</span>
 
                 <span className="card_subTitle">{t.t1}</span>

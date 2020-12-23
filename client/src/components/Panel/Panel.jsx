@@ -5,7 +5,7 @@ import { Users } from "./../Users/Users";
 import { UsersModal } from "./../Users/UsersModal";
 import { Messages } from "./../Messages/Messages";
 import { Input } from "./../Input/Input";
-import { SettingsModal } from "./SettingsModal";
+import { Settings } from "./Settings";
 import { Bitcoin, encrypt, decrypt } from "./../../util/bitcoin";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -131,7 +131,7 @@ export const Panel = ({ name, tags }) => {
                   />
                   {name}
                 </Label> */}
-                <SettingsModal name={name} />
+                <Settings name={name} />
               </div>
             )}
           </div>
@@ -146,7 +146,7 @@ export const Panel = ({ name, tags }) => {
                 {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
               </div>
               <div className="settings">
-                <SettingsModal name={name} />
+                <Settings name={name} />
               </div>
             </div>
             {current.id ? (
