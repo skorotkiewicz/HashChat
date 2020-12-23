@@ -27,8 +27,6 @@ io.on("connect", (socket) => {
   // io.to(user.room).emit = to specific user
   // io.emit               = to everbody
 
-  //
-
   socket.on("checkname", ({ name }, callback) => {
     const { error, okay } = checkName({ name });
     if (error) return callback(false);
@@ -42,7 +40,7 @@ io.on("connect", (socket) => {
   //
 
   socket.on("join", ({ name, tags, bitcoin }, callback) => {
-    const { error, users, user } = addUser({
+    const { error, users } = addUser({
       id: socket.id,
       name,
       tags,
@@ -78,13 +76,6 @@ io.on("connect", (socket) => {
   });
 
   socket.on("sendMessage", (message) => {
-    // io.to(message.to).emit("message", {
-    //   fromName: message.fromName,
-    //   fromId: message.fromId,
-    //   text: message.message,
-    //   tags: [message.tags],
-    // });
-
     const user = getUser(socket.id);
     if (user) {
       io.to(message.to).emit("message", {
