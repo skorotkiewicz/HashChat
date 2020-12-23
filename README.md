@@ -6,7 +6,7 @@ My little side project I ran into through a dream, I wanted to create a place wh
 
 So I created a simple chat where you give tags (which mean your dream) and you can meet a person with the same dream (tag)...
 
-## Contribution
+## Contributing
 
 If you want to support development, you can clone the project and run it on your local device.
 
