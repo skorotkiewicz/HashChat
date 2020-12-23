@@ -1,0 +1,6 @@
+# dependencies
+/node_modules
+*copy*
+package-lock.json
+Procfile
+yarn.lock
