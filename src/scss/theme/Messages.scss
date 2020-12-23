@@ -5,9 +5,13 @@
     font-weight: lighter;
   }
 }
+summary {
+  cursor: pointer;
+}
 details {
   font-size: smaller;
-  background-color: #f3c7b2;
+  // background-color: #f3c7b2;
+  @include theme-aware("background-color", "detailsBg");
   padding: 5px;
   margin-bottom: 5px;
 }

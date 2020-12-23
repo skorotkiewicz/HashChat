@@ -3,7 +3,7 @@ import Polish from "./pl.json";
 import Germany from "./de.json";
 
 import { useDispatch } from "react-redux";
-import { setTranslation } from "./../_actions";
+import { setTranslation, setLanguage } from "./../_actions";
 
 const Languages = () => {
   const dispatch = useDispatch();
@@ -11,16 +11,24 @@ const Languages = () => {
 
   if (/^en\b/.test(lang)) {
     // english
-    return dispatch(setTranslation(English));
+    dispatch(setTranslation(English));
+    dispatch(setLanguage("en"));
+    return;
   } else if (/^pl\b/.test(lang)) {
     // polish
-    return dispatch(setTranslation(Polish));
+    dispatch(setTranslation(Polish));
+    dispatch(setLanguage("pl"));
+    return;
   } else if (/^de\b/.test(lang)) {
     // germany
-    return dispatch(setTranslation(Germany));
+    dispatch(setTranslation(Germany));
+    dispatch(setLanguage("de"));
+    return;
   } else {
     // english
-    return dispatch(setTranslation(English));
+    dispatch(setTranslation(English));
+    dispatch(setLanguage("en"));
+    return;
   }
 };
 

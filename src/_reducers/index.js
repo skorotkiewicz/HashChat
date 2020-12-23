@@ -6,6 +6,8 @@ import {
   offline,
   usersModalOpen,
   translation,
+  language,
+  theme,
 } from "./app";
 
 const allReducer = combineReducers({
@@ -15,6 +17,8 @@ const allReducer = combineReducers({
   offline,
   usersModalOpen,
   translation,
+  language,
+  theme,
 });
 
 export default allReducer;

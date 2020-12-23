@@ -52,5 +52,17 @@
     "t4": "You can wait for the user or try with another tag.",
     "t5": "Okay",
     "t6": "User list"
+  },
+  "settings": {
+    "t1": "Settings",
+    "t2": "Website language",
+    "t3": "Choose in which language you want to browse the page.",
+    "t3a": "Hello",
+    "t4": "Done",
+    "t5": "Signed in as",
+    "t6": "Help",
+    "t7": "Sign Out",
+    "t8": "Website theme",
+    "t9": "Select the color appearance of the page."
   }
 }

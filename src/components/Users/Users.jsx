@@ -1,12 +1,10 @@
 import React from "react";
-import { Button, Card, Image, Label, Icon } from "semantic-ui-react";
+import { Button, Image, Label, Icon, List } from "semantic-ui-react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setUnread, setCurrent, setUsersModalOpen } from "./../../_actions";
 
-export const Users = React.memo(({ refCurrent }) => {
-  // ({ unread, setUnread, users, setCurrent, current, offline }) => {
-
+export const Users = ({ refCurrent }) => {
   //redux state
   const dispatch = useDispatch();
 
@@ -20,23 +18,62 @@ export const Users = React.memo(({ refCurrent }) => {
   const UserList = () => {
     return (
       <>
-        {users.map(({ id, name, tags, bitcoin }) => (
-          <div
-            key={id}
-            className={
-              "user " +
-              (current.id === id && " active ") +
-              (offline.includes(id) && " offline")
-            }
-          >
-            <Card.Content>
+        <List divided verticalAlign="middle">
+          {users.map(({ id, name, tags, bitcoin }, key) => (
+            <List.Item
+              key={key}
+              className={
+                "user " +
+                (current.id === id && " active ") +
+                (offline.includes(id) && " offline")
+              }
+            >
+              <List.Content floated="right">
+                <Button
+                  fluid
+                  basic
+                  color="brown"
+                  onClick={() => {
+                    let address = bitcoin.address;
+                    let pubkey = bitcoin.pubkey;
+
+                    if (current.id !== id) {
+                      dispatch(setCurrent({ id, name, pubkey, address }));
+                      refCurrent.current = {
+                        id,
+                        name,
+                        pubkey,
+                        address,
+                      };
+                    }
+                    if (unread.length >= 1) {
+                      if (unread.includes(id)) {
+                        return dispatch(
+                          setUnread(unread.filter((e) => e !== id))
+                        );
+                      }
+                    }
+                    if (open) {
+                      dispatch(setUsersModalOpen(false));
+                    }
+                  }}
+                >
+                  {/* {t.t1} {name} */}
+                  Chat
+                </Button>
+              </List.Content>
+
               <Image
-                floated="right"
-                size="mini"
-                src={`https://robohash.org/${name}.png?bgset=bg2&size=100x100`}
+                avatar
+                src={`https://robohash.org/${name}.png?bgset=bg2&size=50x50`}
               />
-              <Card.Header>
+              <List.Content>
                 <strong>{name}</strong>
+                <br />
+
+                {tags.map((tag) => (
+                  <span className="utag">{tag}</span>
+                ))}
 
                 {offline.includes(id) && (
                   <span className="offlineInfo">offline</span>
@@ -47,45 +84,10 @@ export const Users = React.memo(({ refCurrent }) => {
                     {unread.filter((c) => c === id).length}
                   </Label>
                 )}
-              </Card.Header>
-              <Card.Meta>
-                {tags.map((tag) => (
-                  <span>{tag}</span>
-                ))}
-              </Card.Meta>
-            </Card.Content>
-
-            <Button
-              fluid
-              basic
-              color="brown"
-              onClick={() => {
-                let address = bitcoin.address;
-                let pubkey = bitcoin.pubkey;
-
-                if (current.id !== id) {
-                  dispatch(setCurrent({ id, name, pubkey, address }));
-                  refCurrent.current = {
-                    id,
-                    name,
-                    pubkey,
-                    address,
-                  };
-                }
-                if (unread.length >= 1) {
-                  if (unread.includes(id)) {
-                    return dispatch(setUnread(unread.filter((e) => e !== id)));
-                  }
-                }
-                if (open) {
-                  dispatch(setUsersModalOpen(false));
-                }
-              }}
-            >
-              {t.t1} {name}
-            </Button>
-          </div>
-        ))}
+              </List.Content>
+            </List.Item>
+          ))}
+        </List>
       </>
     );
   };
@@ -107,4 +109,4 @@ export const Users = React.memo(({ refCurrent }) => {
       )}
     </div>
   );
-});
+};

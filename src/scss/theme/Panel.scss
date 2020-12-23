@@ -11,20 +11,25 @@
   width: 20vw;
 
   .left-stats {
+    .me {
+      @include theme-aware("color", "eee");
+      display: flex;
+    }
+
     height: 50px;
-    background-color: $main;
-    border-right: 1px solid $main;
+    @include theme-aware("background-color", "main");
+    @include theme-aware("border-right", "borderRight");
 
     p {
-      color: $content;
+      @include theme-aware("color", "content");
       padding: 5px;
     }
   }
   .left-users {
     flex: 1 1 0;
-    background-color: $users;
-    border-top: 1px solid $main;
-    border-right: 1px solid $main;
+    @include theme-aware("background-color", "users");
+    @include theme-aware("border-top", "borderTop");
+    @include theme-aware("border-right", "borderRight");
 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -41,15 +46,15 @@
 
   .right-infos {
     height: 50px;
-    background-color: $info;
     padding: 5px;
-    color: $infos;
+    @include theme-aware("background-color", "info");
+    @include theme-aware("color", "infos");
   }
   .right-content {
     flex: 1 1 0;
-    background-color: $content;
-    border-top: 1px solid $main;
-    border-bottom: 1px solid $main;
+    @include theme-aware("background-color", "content");
+    @include theme-aware("border-top", "borderTop");
+    @include theme-aware("border-bottom", "borderBottom");
 
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -91,28 +96,17 @@
 }
 .ui.modal {
   .user {
-    background-color: $eee !important;
+    @include theme-aware("background-color", "uiModalBg");
   }
 }
 .me {
   margin: 10px;
-  color: $white;
+  @include theme-aware("color", "white");
 }
 .typing {
-  background-color: $typing;
-  border-bottom: 1px solid $main;
+  @include theme-aware("background-color", "typingBg");
+  @include theme-aware("border-bottom", "borderBottom");
 }
-// .ui.modal {
-//   .header {
-//     background-color: #d6aea6 !important;
-//   }
-//   .content {
-//     background-color: $users !important;
-//   }
-//   .actions {
-//     background-color: #d6aea6 !important;
-//   }
-// }
 
 @media only screen and (max-width: 950px) {
   .welcomeInfoList-left {
@@ -121,13 +115,36 @@
   .welcomeInfoList-top {
     display: inline;
   }
-
   .flex-left {
     display: none;
   }
   .usersListModal {
     display: inline;
-    float: right;
+
+    .settings {
+      // background-color: #666;
+      // color: #505050;
+      margin-top: 7px;
+      margin-right: 10px;
+      float: left;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .users {
+      float: right;
+      .usersBtn {
+        // background-color: #666;
+        //color: #505050;
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        .usersIconTop {
+          float: left;
+        }
+      }
+    }
   }
   .flex-right {
     width: 100vw;

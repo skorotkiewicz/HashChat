@@ -52,5 +52,17 @@
     "t4": "Sie können auf den Benutzer warten oder es mit einem anderen Tag versuchen.",
     "t5": "Okay",
     "t6": "Benutzerliste"
+  },
+  "settings": {
+    "t1": "Einstellungen",
+    "t2": "Website-Sprache",
+    "t3": "Wählen Sie aus, in welcher Sprache die Seite angezeigt werden soll.",
+    "t3a": "Hallo",
+    "t4": "Erledigt",
+    "t5": "Angemeldet als",
+    "t6": "Hilfe",
+    "t7": "Abmelden",
+    "t8": "Ansicht der Website",
+    "t9": "Wählen Sie das Farbdesign der Seite."
   }
 }

@@ -1,5 +1,5 @@
 .userstitle {
-  font-size: 16px;
+  font-size: 14px;
   margin: 10px;
   border-bottom: 1px solid #383e56;
   color: rgb(10, 10, 10);
@@ -13,19 +13,30 @@
   font-weight: bolder;
 }
 .offline {
-  background-color: rgb(150, 150, 150) !important;
+  @include theme-aware("background-color", "offlineBg");
 }
 .offlineInfo {
-  color: #202020;
+  @include theme-aware("color", "offlineInfoColor");
+  @include theme-aware("background-color", "offlineInfoBg");
   font-weight: lighter;
-  background-color: #808080;
+  margin-left: 5px;
+  padding: 3px;
+  border-radius: 3px;
 }
-.active {
-  border: 2px solid #383e56 !important;
-}
-.user {
-  border: 1px solid #bbb;
-  background-color: $content;
-  margin: 10px;
-  padding: 5px;
+.users {
+  .active {
+    @include theme-aware("border", "activeBorder");
+  }
+  .user {
+    border: 1px solid #bbb;
+    @include theme-aware("background-color", "content");
+    margin: 5px;
+    padding: 5px !important;
+  }
+  .utag {
+    border: 1px solid #28008662;
+    padding: 1px;
+    border-radius: 5px;
+    font-size: smaller;
+  }
 }

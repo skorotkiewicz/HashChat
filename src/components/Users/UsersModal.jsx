@@ -1,4 +1,4 @@
-import { Button, Modal, Icon, Label, Menu } from "semantic-ui-react";
+import { Button, Modal, Icon, Label } from "semantic-ui-react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setUsersModalOpen } from "./../../_actions";
@@ -20,16 +20,17 @@ export const UsersModal = ({ UsersList }) => {
         dispatch(setUsersModalOpen(true));
       }}
       trigger={
-        <Menu compact style={{ marginRight: 15, marginTop: 10 }}>
-          <Menu.Item>
-            <Icon name="users" /> {t.t6}
+        <div className="usersBtn">
+          <span>
+            {t.t6}
+            <Icon className="usersIconTop" name="users" />
             {unread.length > 0 && (
-              <Label color="red" floating>
+              <Label size="tiny" color="red">
                 {unread.length}
               </Label>
             )}
-          </Menu.Item>
-        </Menu>
+          </span>
+        </div>
       }
     >
       {/* <Modal.Header>Match users</Modal.Header> */}

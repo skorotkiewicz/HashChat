@@ -1,21 +1,79 @@
 @charset "utf-8";
 
 //main 4 colors
-$main: #383e56 !default;
-$users: #d4b5b0 !default;
-$info: #f69e7b !default;
-$content: #eedad1 !default;
-// extra
-$typing: #d4b5b0 !default;
-$white: #fff !default;
-$eee: #eee !default;
-$infos: #1e1f27 !default;
+// $main: #383e56 !default;
+// $users: #d4b5b0 !default;
+// $info: #f69e7b !default;
+// $content: #eedad1 !default;
+
+// $infos: #1e1f27 !default;
+// // extra
+// $typing: #d4b5b0 !default;
+// $white: #fff !default;
+// $eee: #eee !default;
 
 // $main: #14274e !default;
 // $users: #9ba4b4 !default;
 // $info: #394867 !default;
 // $content: #f1f6f9 !default;
 // $infos: whitesmoke !default;
+
+$themes: (
+  sepin: (
+    // main [main]
+    main: #383e56,
+    borderRight: 1px solid #383e56,
+    borderTop: 1px solid #383e56,
+    borderBottom: 1px solid #383e56,
+    uiModalBg: #eee,
+    // main [users]
+    users: #d4b5b0,
+    // main [info[
+    info: #f69e7b,
+    // main [content]
+    content: #eedad1,
+    infos: #1e1f27,
+    typingBg: #d4b5b0,
+    white: #fff,
+    eee: #eee,
+    detailsBg: #f3c7b2,
+    activeBorder: 2px solid #383e56 !important,
+    offlineBg: #969696 !important,
+    offlineInfoColor: #202020,
+    offlineInfoBg: #808080,
+  ),
+  nifor: (
+    // main [main]
+    main: #14274e,
+    borderRight: 1px solid #14274e,
+    borderTop: 1px solid #14274e,
+    borderBottom: 1px solid #14274e,
+    uiModalBg: #eee,
+    // main [users]
+    users: #9ba4b4,
+    // main [info]
+    info: #394867,
+    // main [content]
+    content: #f1f6f9,
+    infos: whitesmoke,
+    typingBg: #bbc6da,
+    white: #fff,
+    eee: #eee,
+    detailsBg: #e1eff7,
+    activeBorder: 2px solid #383e56 !important,
+    offlineBg: #969696 !important,
+    offlineInfoColor: #202020,
+    offlineInfoBg: #808080,
+  ),
+);
+
+@mixin theme-aware($key, $color) {
+  @each $theme-name, $theme-color in $themes {
+    .theme-#{$theme-name} & {
+      #{$key}: map-get(map-get($themes, $theme-name), $color);
+    }
+  }
+}
 
 // Imports
 @import "theme/Index.scss", "theme/Input.scss", "theme/Join.scss",

@@ -53,3 +53,21 @@ export const translation = (state = [], action) => {
       return state;
   }
 };
+//
+export const language = (state = "en", action) => {
+  switch (action.type) {
+    case "setLanguage":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+//
+export const theme = (state = "nifor", action) => {
+  switch (action.type) {
+    case "setTheme":
+      return action.payload;
+    default:
+      return state;
+  }
+};

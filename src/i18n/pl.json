@@ -52,5 +52,17 @@
     "t4": "Możesz poczekać na użytkownika lub spróbować z innym tagiem.",
     "t5": "Ok",
     "t6": "Użytkownicy"
+  },
+  "settings": {
+    "t1": "Ustawienia",
+    "t2": "Język strony internetowej",
+    "t3": "Wybierz, w jakim języku chcesz przeglądać stronę.",
+    "t3a": "Witaj",
+    "t4": "Gotowe",
+    "t5": "Zalogowany jako",
+    "t6": "Pomoc",
+    "t7": "Wyloguj",
+    "t8": "Wygląd strony",
+    "t9": "Wybierz wygląd strony."
   }
 }

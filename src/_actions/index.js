@@ -46,3 +46,17 @@ export const setTranslation = (msg) => {
     payload: msg,
   };
 };
+//
+export const setLanguage = (msg) => {
+  return {
+    type: "setLanguage",
+    payload: msg,
+  };
+};
+//
+export const setTheme = (msg) => {
+  return {
+    type: "setTheme",
+    payload: msg,
+  };
+};

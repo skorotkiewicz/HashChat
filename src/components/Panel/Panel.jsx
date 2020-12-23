@@ -5,6 +5,7 @@ import { Users } from "./../Users/Users";
 import { UsersModal } from "./../Users/UsersModal";
 import { Messages } from "./../Messages/Messages";
 import { Input } from "./../Input/Input";
+import { SettingsModal } from "./SettingsModal";
 import { Bitcoin, encrypt, decrypt } from "./../../util/bitcoin";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -25,6 +26,7 @@ export const Panel = ({ name, tags }) => {
   const users = useSelector((state) => state.users);
   const t = useSelector((state) => state.translation);
   const offline = useSelector((state) => state.offline);
+  const theme = useSelector((state) => state.theme);
 
   const refCurrent = useRef([]);
 
@@ -116,19 +118,20 @@ export const Panel = ({ name, tags }) => {
 
   return (
     <div>
-      <div className="flex-container">
+      <div className={`flex-container theme-${theme}`}>
         <div className="flex-left">
           <div className="left-stats">
             {!myId ? (
               "No connection"
             ) : (
               <div className="me">
-                <Label color="blue" image>
+                {/* <Label color="blue" image>
                   <Image
                     src={`https://robohash.org/${name}.png?bgset=bg2&size=100x100`}
                   />
                   {name}
-                </Label>
+                </Label> */}
+                <SettingsModal name={name} />
               </div>
             )}
           </div>
@@ -139,7 +142,12 @@ export const Panel = ({ name, tags }) => {
         <div className="flex-right">
           <div className="right-infos">
             <div className="usersListModal">
-              {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
+              <div className="users">
+                {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
+              </div>
+              <div className="settings">
+                <SettingsModal name={name} />
+              </div>
             </div>
             {current.id ? (
               <>
@@ -155,10 +163,17 @@ export const Panel = ({ name, tags }) => {
               </>
             ) : (
               <>
-                {t.panel.t3} {name},<br></br>
-                <small>
-                  {t.panel.t4} {tags}
-                </small>
+                <Label color="blue" image>
+                  <Image
+                    src={`https://robohash.org/${name}.png?bgset=bg2&size=50x50`}
+                  />
+                  {name}
+                </Label>
+                {tags.split(" ").map((tag, key) => (
+                  <Label key={key} color="teal">
+                    {tag}
+                  </Label>
+                ))}
               </>
             )}
           </div>
