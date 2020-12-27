@@ -1,6 +1,6 @@
 let favurl;
 
-const Favico = (count) => {
+export const Favico = (count) => {
   const favicon = document.querySelector("link[rel=icon]");
 
   if (favurl === undefined) favurl = favicon.href;
@@ -43,4 +43,21 @@ const Favico = (count) => {
   };
 };
 
-export default Favico;
+export const Push = (messages, t) => {
+  let message = messages.slice(-1)[0];
+  if (Notification.permission === "granted") {
+    return new Notification(`${t.t8} ${message.fromName}`, {
+      // body: "",
+      icon: "/hashchat.png",
+    });
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        return new Notification(`${t.t8} ${message.fromName}`, {
+          // body: "",
+          icon: "/hashchat.png",
+        });
+      }
+    });
+  }
+};

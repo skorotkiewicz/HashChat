@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import Favico from "favico.js";
 import { useSelector } from "react-redux";
-import favico from "./../../util/NotifiFavicon";
+import { Favico as favico, Push as push } from "./../../util/Notifi";
 
 const title = document.title;
 export const BlinkingTitle = ({ messages, interval, t, notifi }) => {
@@ -39,7 +39,10 @@ export const BlinkingTitle = ({ messages, interval, t, notifi }) => {
         }
       }, interval);
       setId(idx);
-      notifi && play();
+      if (notifi) {
+        play();
+        push(messages, t);
+      }
       favico(unreadCount);
     }
 

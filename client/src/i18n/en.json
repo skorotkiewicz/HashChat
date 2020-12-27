@@ -45,7 +45,8 @@
     "t4": "your tags: ",
     "t5": "is typing",
     "t6": "new messages",
-    "t7": "new message"
+    "t7": "new message",
+    "t8": "New incoming message from"
   },
   "users": {
     "t1": "Chat with",
