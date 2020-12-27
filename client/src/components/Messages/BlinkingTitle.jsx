@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+// import Favico from "favico.js";
 import { useSelector } from "react-redux";
+import favico from "./../../util/NotifiFavicon";
 
 const title = document.title;
 export const BlinkingTitle = ({ messages, interval, t, notifi }) => {
@@ -38,17 +40,20 @@ export const BlinkingTitle = ({ messages, interval, t, notifi }) => {
       }, interval);
       setId(idx);
       notifi && play();
+      favico(unreadCount);
     }
 
     return () => {
       if (idx) clearInterval(idx);
       document.title = title;
+      favico();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notifiTitle]);
 
   const play = () => {
     let audio = new Audio("/notifi.mp3");
+    audio.volume = 0.2;
     audio.play();
   };
 
