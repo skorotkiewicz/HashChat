@@ -27,11 +27,14 @@ details {
     color: #fff;
     border-radius: 5px;
     padding-left: 1.7px;
+    background-color: #cecece;
   }
   .ON {
-    background-color: green;
+    // background-color: green;
+    color: green;
   }
   .OFF {
-    background-color: #a00000;
+    color: #a00000;
+    // background-color: #a00000;
   }
 }

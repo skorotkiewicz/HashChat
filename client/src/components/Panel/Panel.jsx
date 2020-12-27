@@ -148,13 +148,7 @@ export const Panel = ({ name, tags }) => {
               <>
                 {t.panel.t1}: <strong>{current.name}</strong>
                 <br></br>
-                <small>
-                  [{" "}
-                  <strong>
-                    {current.name} {t.panel.t2}
-                  </strong>{" "}
-                  {current.address} ]
-                </small>
+                <small className="ca">{current.address}</small>
               </>
             ) : (
               <>

@@ -49,6 +49,10 @@
     padding: 5px;
     @include theme-aware("background-color", "info");
     @include theme-aware("color", "infos");
+    .ca {
+      color: #eee;
+      font-style: italic;
+    }
   }
   .right-content {
     flex: 1 1 0;
