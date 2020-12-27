@@ -60,3 +60,10 @@ export const setTheme = (msg) => {
     payload: msg,
   };
 };
+//
+export const setWindowIsActive = (msg) => {
+  return {
+    type: "setWindowIsActive",
+    payload: msg,
+  };
+};

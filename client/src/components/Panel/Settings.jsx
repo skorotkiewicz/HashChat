@@ -29,7 +29,7 @@ export const Settings = ({ name }) => {
   return (
     <div>
       <Dropdown
-        value={""}
+        defaultValue={""}
         trigger={
           <span>
             <Icon name="user" /> {t.t3a}, {name}

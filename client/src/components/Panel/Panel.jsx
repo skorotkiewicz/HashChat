@@ -7,7 +7,7 @@ import { Messages } from "./../Messages/Messages";
 import { Input } from "./../Input/Input";
 import { Settings } from "./Settings";
 import { Bitcoin, encrypt, decrypt } from "./../../util/bitcoin";
-
+import { BlinkingTitle } from "./../Messages/BlinkingTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { setUnread, addUnread, setUsers, addOffline } from "./../../_actions";
 
@@ -18,6 +18,7 @@ export const Panel = ({ name, tags }) => {
   const [bitcoin, setBitcoin] = useState([]);
   const [typingA, setTypingA] = useState(false);
   const [typingB, setTypingB] = useState([]);
+  const [notifi, setNotifi] = useState(true);
 
   // redux
   const dispatch = useDispatch();
@@ -125,12 +126,6 @@ export const Panel = ({ name, tags }) => {
               "No connection"
             ) : (
               <div className="me">
-                {/* <Label color="blue" image>
-                  <Image
-                    src={`https://robohash.org/${name}.png?bgset=bg2&size=100x100`}
-                  />
-                  {name}
-                </Label> */}
                 <Settings name={name} />
               </div>
             )}
@@ -178,6 +173,16 @@ export const Panel = ({ name, tags }) => {
             )}
           </div>
           <div className="right-content">
+            {messages.slice(-1)[0] &&
+              Array.isArray(messages.slice(-1)[0].message) && (
+                <BlinkingTitle
+                  messages={messages}
+                  interval={300}
+                  t={t.panel}
+                  notifi={notifi}
+                />
+              )}
+
             <Messages
               messages={messages}
               setMessages={setMessages}
@@ -186,6 +191,8 @@ export const Panel = ({ name, tags }) => {
               bitcoin={bitcoin}
               decrypt={decrypt}
               typingB={typingB}
+              notifi={notifi}
+              setNotifi={setNotifi}
             />
           </div>
 

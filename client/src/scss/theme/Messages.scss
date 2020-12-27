@@ -15,3 +15,23 @@ details {
   padding: 5px;
   margin-bottom: 5px;
 }
+.audioNotifi {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+
+  button {
+    width: 25px;
+    height: 25px;
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    padding-left: 1.7px;
+  }
+  .ON {
+    background-color: green;
+  }
+  .OFF {
+    background-color: #a00000;
+  }
+}

@@ -43,7 +43,9 @@
     "t2": "'s bitcoin",
     "t3": "Hello",
     "t4": "your tags: ",
-    "t5": "is typing"
+    "t5": "is typing",
+    "t6": "new messages",
+    "t7": "new message"
   },
   "users": {
     "t1": "Chat with",

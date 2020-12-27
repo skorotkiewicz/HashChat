@@ -15,6 +15,10 @@ const addUser = ({ id, name, tags, bitcoin }) => {
   if (!name || !tags) return { error: "Username and tags are required." };
 
   name = name.trim().toLowerCase();
+
+  if (tags.length > 50 || name.length < 3)
+    return { error: "Tags min 3 char and max 25 char" };
+
   tags = tags.trim().toLowerCase().split(" ");
 
   if (name.length > 25 || name.length < 3)

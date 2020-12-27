@@ -71,3 +71,12 @@ export const theme = (state = "nifor", action) => {
       return state;
   }
 };
+//
+export const windowIsActive = (state = true, action) => {
+  switch (action.type) {
+    case "setWindowIsActive":
+      return action.payload;
+    default:
+      return state;
+  }
+};

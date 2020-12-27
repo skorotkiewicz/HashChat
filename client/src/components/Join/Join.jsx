@@ -125,7 +125,7 @@ export const Join = () => {
                   )}
 
                   {name.length >= 3 && (
-                    <Message success attached="bottom">
+                    <Message attached="bottom">
                       <div className="nameFeedback">
                         {check ? (
                           <div className="nick ok">{t.t18}</div>
