@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Header,
@@ -7,6 +8,8 @@ import {
   Grid,
   Divider,
   Icon,
+  Label,
+  Input,
 } from "semantic-ui-react";
 
 import English from "./../../i18n/en.json";
@@ -16,11 +19,15 @@ import Germany from "./../../i18n/de.json";
 import { useDispatch, useSelector } from "react-redux";
 import { setTranslation, setLanguage, setTheme } from "./../../_actions";
 
-export const SettingsModal = ({ setOpenSettings, openSettings }) => {
+import { editTags } from "./../../util/socket";
+
+export const SettingsModal = ({ setOpenSettings, openSettings, tags }) => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.language);
   const t = useSelector((state) => state.translation.settings);
   const theme = useSelector((state) => state.theme);
+  const [tagsarr, setTagsarr] = useState(tags && tags.split(" "));
+  const [newTags, setNewTags] = useState("");
 
   const themeOptions = [
     {
@@ -131,6 +138,61 @@ export const SettingsModal = ({ setOpenSettings, openSettings }) => {
             <Icon name="settings" />
           </Divider>
         </Segment>
+
+        {/* edit tags */}
+        <Modal.Content>
+          <Modal.Description>
+            <Header>Edytuj tagi</Header>
+            <p>
+              Tutaj mozesz usunąć lub dodać nowe tagi. (nie zapomnij zapisać!)
+            </p>
+
+            <Segment.Group>
+              <Header attached>
+                {tags &&
+                  tagsarr.map((tag, key) => (
+                    <Label
+                      key={key}
+                      as="a"
+                      onClick={() => {
+                        let newtags = tagsarr.filter((e) => e !== tag);
+                        setTagsarr(newtags);
+                      }}
+                    >
+                      {tag}
+                      <Icon name="delete" />
+                    </Label>
+                  ))}
+              </Header>
+
+              <Segment attached>
+                Kazdy nowy tag odzielony spacją
+                <Input
+                  icon="tags"
+                  iconPosition="left"
+                  label={{ tag: true, content: "Dodaj nowe tagi" }}
+                  labelPosition="right"
+                  placeholder="Kazdy tag odzielony spacją"
+                  onChange={(e) => setNewTags(e.target.value)}
+                />
+              </Segment>
+              <Segment attached>
+                <Button
+                  color="blue"
+                  fluid
+                  type="submit"
+                  onClick={() => {
+                    let allTags = tagsarr.concat(newTags.split(" ")).join(" ");
+                    editTags(allTags);
+                  }}
+                >
+                  Zapisz nowe tagi
+                </Button>
+              </Segment>
+            </Segment.Group>
+          </Modal.Description>
+        </Modal.Content>
+        {/* /edit tags */}
 
         <Modal.Actions>
           <Button

@@ -141,7 +141,7 @@ export const Panel = ({ name, tags }) => {
                 {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
               </div>
               <div className="settings">
-                <Settings name={name} />
+                <Settings name={name} tags={tags} />
               </div>
             </div>
             {current.id ? (

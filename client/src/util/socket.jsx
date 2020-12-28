@@ -16,3 +16,11 @@ export const ftyping = (current, setTypingA, status = false) => {
 
   return;
 };
+
+export const editTags = (tags) => {
+  socket.emit("editTags", { tags }, (cb) => {
+    if (cb) alert(cb);
+  });
+
+  return;
+};
