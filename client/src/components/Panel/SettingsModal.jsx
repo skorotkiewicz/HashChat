@@ -1,4 +1,13 @@
-import { Button, Header, Modal, Dropdown } from "semantic-ui-react";
+import {
+  Button,
+  Header,
+  Modal,
+  Dropdown,
+  Segment,
+  Grid,
+  Divider,
+  Icon,
+} from "semantic-ui-react";
 
 import English from "./../../i18n/en.json";
 import Polish from "./../../i18n/pl.json";
@@ -43,70 +52,85 @@ export const SettingsModal = ({ setOpenSettings, openSettings }) => {
       >
         <Modal.Header>{t.t1}</Modal.Header>
 
-        <Modal.Content>
-          <Modal.Description>
-            <Header>{t.t2}</Header>
-            <p>{t.t3}</p>
+        <Segment>
+          <Grid columns={2} relaxed="very">
+            <Grid.Column>
+              {/* language model */}
+              <Modal.Content>
+                <Modal.Description>
+                  <Header>{t.t2}</Header>
+                  <p>{t.t3}</p>
 
-            <Dropdown
-              button
-              className="icon"
-              floating
-              labeled
-              icon="world"
-              defaultValue={language}
-              options={languageOptions}
-              onChange={(e, data) => {
-                switch (data.value) {
-                  case "en":
-                    dispatch(setTranslation(English));
-                    break;
-                  case "pl":
-                    dispatch(setTranslation(Polish));
-                    break;
-                  case "de":
-                    dispatch(setTranslation(Germany));
-                    break;
-                  default:
-                    dispatch(setTranslation(English));
-                    dispatch(setLanguage("en"));
-                    break;
-                }
-                dispatch(setLanguage(data.value));
-              }}
-            />
-          </Modal.Description>
-        </Modal.Content>
+                  <Dropdown
+                    button
+                    className="icon"
+                    floating
+                    labeled
+                    icon="world"
+                    defaultValue={language}
+                    options={languageOptions}
+                    onChange={(e, data) => {
+                      switch (data.value) {
+                        case "en":
+                          dispatch(setTranslation(English));
+                          break;
+                        case "pl":
+                          dispatch(setTranslation(Polish));
+                          break;
+                        case "de":
+                          dispatch(setTranslation(Germany));
+                          break;
+                        default:
+                          dispatch(setTranslation(English));
+                          dispatch(setLanguage("en"));
+                          break;
+                      }
+                      dispatch(setLanguage(data.value));
+                    }}
+                  />
+                </Modal.Description>
+              </Modal.Content>
+              {/* /language model */}
+            </Grid.Column>
+            <Grid.Column>
+              {/* theme settings */}
+              <Modal.Content>
+                <Modal.Description>
+                  <Header>{t.t8}</Header>
+                  <p>{t.t9}</p>
 
-        <Modal.Content>
-          <Modal.Description>
-            <Header>{t.t8}</Header>
-            <p>{t.t9}</p>
+                  <Dropdown
+                    button
+                    className="icon"
+                    floating
+                    labeled
+                    icon="theme"
+                    defaultValue={theme}
+                    options={themeOptions}
+                    onChange={(e, data) => {
+                      switch (data.value) {
+                        case "sepin":
+                          dispatch(setTheme("sepin"));
+                          break;
+                        case "nifor":
+                          dispatch(setTheme("nifor"));
+                          break;
+                        default:
+                          dispatch(setTheme("nifor"));
+                          break;
+                      }
+                    }}
+                  />
+                </Modal.Description>
+              </Modal.Content>
+              {/* /theme settings */}
+            </Grid.Column>
+          </Grid>
 
-            <Dropdown
-              button
-              className="icon"
-              floating
-              labeled
-              icon="theme"
-              defaultValue={theme}
-              options={themeOptions}
-              onChange={(e, data) => {
-                switch (data.value) {
-                  case "sepin":
-                    dispatch(setTheme("sepin"));
-                    break;
-                  case "nifor":
-                    dispatch(setTheme("nifor"));
-                    break;
-                  default:
-                    dispatch(setTheme("nifor"));
-                    break;
-                }
-              }}
-            />
-          </Modal.Description>
-        </Modal.Content>
+          <Divider vertical>
+            <Icon name="settings" />
+          </Divider>
+        </Segment>
 
         <Modal.Actions>
           <Button
