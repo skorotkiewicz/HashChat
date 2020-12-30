@@ -18,9 +18,10 @@ export const ftyping = (current, setTypingA, status = false) => {
 };
 
 export const editTags = (tags) => {
-  socket.emit("editTags", { tags }, (cb) => {
-    if (cb) alert(cb);
-  });
+  if (tags)
+    socket.emit("editTags", { tags }, (cb) => {
+      if (cb) alert(cb);
+    });
 
   return;
 };

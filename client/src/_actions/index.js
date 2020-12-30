@@ -67,3 +67,10 @@ export const setWindowIsActive = (msg) => {
     payload: msg,
   };
 };
+//
+export const setTags = (msg) => {
+  return {
+    type: "setTags",
+    payload: msg,
+  };
+};

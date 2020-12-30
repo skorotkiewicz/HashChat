@@ -80,3 +80,12 @@ export const windowIsActive = (state = true, action) => {
       return state;
   }
 };
+//
+export const tags = (state = "", action) => {
+  switch (action.type) {
+    case "setTags":
+      return action.payload;
+    default:
+      return state;
+  }
+};

@@ -11,7 +11,7 @@ import { BlinkingTitle } from "./../Messages/BlinkingTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { setUnread, addUnread, setUsers, addOffline } from "./../../_actions";
 
-export const Panel = ({ name, tags }) => {
+export const Panel = ({ name }) => {
   const [message, setMessage] = useState("");
   const [myId, setMyId] = useState("");
   const [messages, setMessages] = useState([]);
@@ -28,6 +28,7 @@ export const Panel = ({ name, tags }) => {
   const t = useSelector((state) => state.translation);
   const offline = useSelector((state) => state.offline);
   const theme = useSelector((state) => state.theme);
+  const tags = useSelector((state) => state.tags);
 
   const refCurrent = useRef([]);
 
@@ -141,7 +142,7 @@ export const Panel = ({ name, tags }) => {
                 {<UsersModal UsersList={<Users refCurrent={refCurrent} />} />}
               </div>
               <div className="settings">
-                <Settings name={name} tags={tags} />
+                <Settings name={name} />
               </div>
             </div>
             {current.id ? (

@@ -9,6 +9,7 @@ import {
   language,
   theme,
   windowIsActive,
+  tags,
 } from "./app";
 
 const allReducer = combineReducers({
@@ -21,6 +22,7 @@ const allReducer = combineReducers({
   language,
   theme,
   windowIsActive,
+  tags,
 });
 
 export default allReducer;

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { SettingsModal } from "./SettingsModal";
 import { HelpModal } from "./HelpModal";
 
-export const Settings = ({ name, tags }) => {
+export const Settings = ({ name }) => {
   const t = useSelector((state) => state.translation.settings);
 
   const [openSettings, setOpenSettings] = useState(false);
@@ -53,11 +53,9 @@ export const Settings = ({ name, tags }) => {
           }
         }}
       />
-
       <SettingsModal
         setOpenSettings={setOpenSettings}
         openSettings={openSettings}
-        tags={tags}
       />
       <HelpModal setOpenHelp={setOpenHelp} openHelp={openHelp} />
     </div>

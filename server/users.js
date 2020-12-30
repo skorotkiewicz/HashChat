@@ -11,15 +11,36 @@ const checkName = ({ name }) => {
   return { error: false };
 };
 
+const editTags = ({ id, tags }) => {
+  if (!tags) return { error: "Tags are required." };
+  newTags = tags.trim().toLowerCase().split(" ");
+  newTags = newTags.filter((n) => n);
+
+  if (newTags.length === 0) return { error: "Tags min 3 char and max 25 char" };
+
+  users.map((user) => {
+    if (id === user.id) {
+      let id = user.id;
+      let name = user.name;
+      let bitcoin = user.bitcoin;
+
+      removeUser(id);
+
+      userNewData = { id, name, tags: newTags, bitcoin };
+      users.push(userNewData);
+    }
+  });
+  return { users };
+};
+
 const addUser = ({ id, name, tags, bitcoin }) => {
   if (!name || !tags) return { error: "Username and tags are required." };
+  tags = tags.trim().toLowerCase().split(" ");
+  tags = tags.filter((n) => n);
+
+  if (tags.length === 0) return { error: "Tags min 3 char and max 25 char" };
 
   name = name.trim().toLowerCase();
-
-  if (tags.length > 50 || name.length < 3)
-    return { error: "Tags min 3 char and max 25 char" };
-
-  tags = tags.trim().toLowerCase().split(" ");
 
   if (name.length > 25 || name.length < 3)
     return { error: "Username min 3 char and max 25 char" };
@@ -61,4 +82,5 @@ module.exports = {
   checkName,
   // countUsers,
   allUsers,
+  editTags,
 };

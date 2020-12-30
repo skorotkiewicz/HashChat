@@ -10,11 +10,13 @@ import {
 } from "semantic-ui-react";
 import { socket } from "./../../util/socket";
 import { Panel } from "../Panel/Panel";
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { setTags } from "./../../_actions";
 
 export const Join = () => {
   const [name, setName] = useState("");
-  const [tags, setTags] = useState("");
+  // const [tags, setTags] = useState("");
   const [check, setCheck] = useState(null);
   const [validate, setValidate] = useState(null);
 
@@ -22,7 +24,9 @@ export const Join = () => {
   const [next, setNext] = useState(false);
 
   // redux
+  const dispatch = useDispatch();
   const t = useSelector((state) => state.translation.join);
+  const tags = useSelector((state) => state.tags);
 
   useEffect(() => {
     if (name.length >= 3) {
@@ -87,10 +91,10 @@ export const Join = () => {
                       label={{ tag: true, content: t.t15 }}
                       labelPosition="right"
                       placeholder={t.t16}
-                      onChange={(e) => setTags(e.target.value)}
+                      onChange={(e) => dispatch(setTags(e.target.value))}
                       onKeyPress={(e) => {
                         if (e.key === "Enter") {
-                          if ((name.length >= 3) & (tags.length >= 3) & check) {
+                          if ((name.length >= 3) & (tags.length > 0) & check) {
                             setNext(true);
                             setComp(false);
                           } else {
@@ -105,7 +109,7 @@ export const Join = () => {
                       fluid
                       type="submit"
                       onClick={() => {
-                        if ((name.length >= 3) & (tags.length >= 3) & check) {
+                        if ((name.length >= 3) & (tags.length > 0) & check) {
                           setNext(true);
                           setComp(false);
                         } else {
@@ -141,7 +145,7 @@ export const Join = () => {
           </div>
         </div>
       )}
-      {next && <Panel name={name} tags={tags} />}
+      {next && <Panel name={name} />}
     </>
   );
 };

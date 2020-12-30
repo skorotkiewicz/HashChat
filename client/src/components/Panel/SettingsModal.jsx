@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Header,
@@ -17,17 +17,34 @@ import Polish from "./../../i18n/pl.json";
 import Germany from "./../../i18n/de.json";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setTranslation, setLanguage, setTheme } from "./../../_actions";
+import {
+  setTranslation,
+  setLanguage,
+  setTheme,
+  setTags,
+} from "./../../_actions";
 
 import { editTags } from "./../../util/socket";
 
-export const SettingsModal = ({ setOpenSettings, openSettings, tags }) => {
+export const SettingsModal = ({ setOpenSettings, openSettings }) => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.language);
   const t = useSelector((state) => state.translation.settings);
   const theme = useSelector((state) => state.theme);
-  const [tagsarr, setTagsarr] = useState(tags && tags.split(" "));
+  const tags = useSelector((state) => state.tags);
+
+  const [tagsarr, setTagsarr] = useState([]);
   const [newTags, setNewTags] = useState("");
+
+  useEffect(() => {
+    if (tags) {
+      let tagsArr = tags.split(" ");
+      if (tagsArr.length > 0) {
+        setTagsarr(tagsArr);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const themeOptions = [
     {
@@ -142,37 +159,39 @@ export const SettingsModal = ({ setOpenSettings, openSettings, tags }) => {
         {/* edit tags */}
         <Modal.Content>
           <Modal.Description>
-            <Header>Edytuj tagi</Header>
-            <p>
-              Tutaj mozesz usunąć lub dodać nowe tagi. (nie zapomnij zapisać!)
-            </p>
+            <Header>{t.t14}</Header>
+            <p>{t.t10}</p>
 
             <Segment.Group>
               <Header attached>
-                {tags &&
-                  tagsarr.map((tag, key) => (
-                    <Label
-                      key={key}
-                      as="a"
-                      onClick={() => {
-                        let newtags = tagsarr.filter((e) => e !== tag);
-                        setTagsarr(newtags);
-                      }}
-                    >
-                      {tag}
-                      <Icon name="delete" />
-                    </Label>
-                  ))}
+                {tagsarr && (
+                  <>
+                    {tagsarr.map((tag, key) => (
+                      <Label
+                        key={key}
+                        as="a"
+                        onClick={() => {
+                          let newtags = tagsarr.filter((e) => e !== tag);
+                          setTagsarr(newtags);
+                        }}
+                      >
+                        {tag}
+                        <Icon name="delete" />
+                      </Label>
+                    ))}
+                  </>
+                )}
               </Header>
 
               <Segment attached>
-                Kazdy nowy tag odzielony spacją
+                {t.t11}
                 <Input
                   icon="tags"
                   iconPosition="left"
-                  label={{ tag: true, content: "Dodaj nowe tagi" }}
+                  label={{ tag: true, content: t.t12 }}
                   labelPosition="right"
-                  placeholder="Kazdy tag odzielony spacją"
+                  value={newTags}
+                  placeholder={t.t11}
                   onChange={(e) => setNewTags(e.target.value)}
                 />
               </Segment>
@@ -182,11 +201,37 @@ export const SettingsModal = ({ setOpenSettings, openSettings, tags }) => {
                   fluid
                   type="submit"
                   onClick={() => {
-                    let allTags = tagsarr.concat(newTags.split(" ")).join(" ");
-                    editTags(allTags);
+                    if (tagsarr) {
+                      let _newTags = newTags.trim().toLowerCase().split(" ");
+                      let __newTags = _newTags.filter((n) => n);
+
+                      if (__newTags.length > 0) {
+                        let allTags;
+
+                        if (tagsarr.length === 0) {
+                          allTags = __newTags.join(" ");
+                          setTagsarr(__newTags);
+                        } else {
+                          allTags = tagsarr.concat(__newTags).join(" ");
+                          setTagsarr(allTags.split(" "));
+                        }
+                        if (allTags) {
+                          editTags(allTags);
+                          dispatch(setTags(allTags));
+                          setNewTags("");
+                        }
+                      }
+                      if (tagsarr.length > 0) {
+                        if (tags !== tagsarr.join(" ")) {
+                          let allTags = tagsarr.join(" ");
+                          editTags(allTags);
+                          dispatch(setTags(allTags));
+                        }
+                      }
+                    }
                   }}
                 >
-                  Zapisz nowe tagi
+                  {t.t13}
                 </Button>
               </Segment>
             </Segment.Group>

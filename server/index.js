@@ -9,6 +9,7 @@ const {
   getUser,
   checkName,
   allUsers,
+  editTags,
   // countUsers,
 } = require("./users");
 
@@ -52,26 +53,14 @@ io.on("connect", (socket) => {
       id: socket.id,
     });
 
-    //
-    // const { counter } = countUsers();
-    // io.emit("counter", counter);
+    sendUsersList(users);
+    callback();
+  });
 
-    users.map((_user) => {
-      let myUsersUpdate = [];
-
-      users.find((user) => {
-        if (user.tags.some((tag) => _user.tags.includes(tag))) {
-          console.log(_user.name, user.name);
-          if (_user.name !== user.name) {
-            myUsersUpdate.push(user);
-          }
-        }
-      });
-      if (myUsersUpdate.length >= 1) {
-        io.to(_user.id).emit("users", myUsersUpdate);
-      }
-    });
-
+  socket.on("editTags", ({ tags }, callback) => {
+    const { error, users } = editTags({ id: socket.id, tags });
+    if (error) return callback(error);
+    sendUsersList(users, true);
     callback();
   });
 
@@ -104,11 +93,28 @@ io.on("connect", (socket) => {
         }
       });
     }
-
-    // const { counter } = countUsers();
-    // io.emit("counter", counter);
   });
 });
+
+const sendUsersList = (users, update = false) => {
+  users.map((_user) => {
+    let myUsersUpdate = [];
+
+    users.find((user) => {
+      if (user.tags.some((tag) => _user.tags.includes(tag))) {
+        if (_user.name !== user.name) {
+          myUsersUpdate.push(user);
+        }
+      }
+    });
+    if (myUsersUpdate.length >= 1) {
+      io.to(_user.id).emit("users", myUsersUpdate);
+    }
+    if (update) {
+      io.to(_user.id).emit("users", myUsersUpdate);
+    }
+  });
+};
 
 server.listen(process.env.PORT || 5000, () =>
   console.log(`Server has started.`)
