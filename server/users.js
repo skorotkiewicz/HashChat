@@ -13,7 +13,8 @@ const checkName = ({ name }) => {
 
 const editTags = ({ id, tags }) => {
   if (!tags) return { error: "Tags are required." };
-  newTags = tags.trim().toLowerCase().split(" ");
+  newTags = tags.join(" ");
+  newTags = newTags.trim().toLowerCase().split(" ");
   newTags = newTags.filter((n) => n);
 
   if (newTags.length === 0) return { error: "Tags min 3 char and max 25 char" };
@@ -35,6 +36,7 @@ const editTags = ({ id, tags }) => {
 
 const addUser = ({ id, name, tags, bitcoin }) => {
   if (!name || !tags) return { error: "Username and tags are required." };
+  tags = tags.join(" ");
   tags = tags.trim().toLowerCase().split(" ");
   tags = tags.filter((n) => n);
 

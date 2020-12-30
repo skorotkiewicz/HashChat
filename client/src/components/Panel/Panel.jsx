@@ -159,7 +159,7 @@ export const Panel = ({ name }) => {
                   />
                   {name}
                 </Label>
-                {tags.split(" ").map((tag, key) => (
+                {tags.map((tag, key) => (
                   <Label key={key} color="teal">
                     {tag}
                   </Label>

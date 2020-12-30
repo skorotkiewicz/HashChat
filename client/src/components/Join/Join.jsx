@@ -16,7 +16,6 @@ import { setTags } from "./../../_actions";
 
 export const Join = () => {
   const [name, setName] = useState("");
-  // const [tags, setTags] = useState("");
   const [check, setCheck] = useState(null);
   const [validate, setValidate] = useState(null);
 
@@ -91,7 +90,14 @@ export const Join = () => {
                       label={{ tag: true, content: t.t15 }}
                       labelPosition="right"
                       placeholder={t.t16}
-                      onChange={(e) => dispatch(setTags(e.target.value))}
+                      onChange={(e) => {
+                        let tags = e.target.value
+                          .trim()
+                          .toLowerCase()
+                          .split(" ");
+                        let _tags = tags.filter((n) => n);
+                        dispatch(setTags(_tags));
+                      }}
                       onKeyPress={(e) => {
                         if (e.key === "Enter") {
                           if ((name.length >= 3) & (tags.length > 0) & check) {

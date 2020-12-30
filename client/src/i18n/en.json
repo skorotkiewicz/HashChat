@@ -67,10 +67,9 @@
     "t7": "Sign Out",
     "t8": "Website theme",
     "t9": "Select the color appearance of the page.",
-    "t10": "Here you can remove or add new tags. (Don't forget to save!)",
-    "t11": "Each new tag separated by a space",
-    "t12": "Add new tags",
-    "t13": "Save new tags",
+    "t10": "Here you can remove or add new tags",
+    "t12": "Add new tag",
+    "t13": "Save new tag",
     "t14": "Edit tags"
   }
 }

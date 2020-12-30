@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Header,
@@ -32,19 +32,7 @@ export const SettingsModal = ({ setOpenSettings, openSettings }) => {
   const t = useSelector((state) => state.translation.settings);
   const theme = useSelector((state) => state.theme);
   const tags = useSelector((state) => state.tags);
-
-  const [tagsarr, setTagsarr] = useState([]);
   const [newTags, setNewTags] = useState("");
-
-  useEffect(() => {
-    if (tags) {
-      let tagsArr = tags.split(" ");
-      if (tagsArr.length > 0) {
-        setTagsarr(tagsArr);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const themeOptions = [
     {
@@ -164,35 +152,41 @@ export const SettingsModal = ({ setOpenSettings, openSettings }) => {
 
             <Segment.Group>
               <Header attached>
-                {tagsarr && (
-                  <>
-                    {tagsarr.map((tag, key) => (
-                      <Label
-                        key={key}
-                        as="a"
-                        onClick={() => {
-                          let newtags = tagsarr.filter((e) => e !== tag);
-                          setTagsarr(newtags);
-                        }}
-                      >
-                        {tag}
-                        <Icon name="delete" />
-                      </Label>
-                    ))}
-                  </>
-                )}
+                {tags.map((tag, key) => (
+                  <Label
+                    key={key}
+                    as="a"
+                    onClick={() => {
+                      let newtags = tags.filter((e) => e !== tag);
+                      if (tags.length > 1) {
+                        dispatch(setTags(newtags));
+                        editTags(newtags);
+                      }
+                    }}
+                  >
+                    {tag}
+                    <Icon name="delete" />
+                  </Label>
+                ))}
               </Header>
 
               <Segment attached>
-                {t.t11}
                 <Input
                   icon="tags"
                   iconPosition="left"
                   label={{ tag: true, content: t.t12 }}
                   labelPosition="right"
-                  value={newTags}
+                  value={newTags && newTags.join(" ")}
                   placeholder={t.t11}
-                  onChange={(e) => setNewTags(e.target.value)}
+                  onChange={(e) => {
+                    let newtags = e.target.value
+                      .trim()
+                      .toLowerCase()
+                      .split(" ");
+                    let _newtags = newtags.filter((n) => n);
+
+                    setNewTags(_newtags);
+                  }}
                 />
               </Segment>
               <Segment attached>
@@ -201,33 +195,19 @@ export const SettingsModal = ({ setOpenSettings, openSettings }) => {
                   fluid
                   type="submit"
                   onClick={() => {
-                    if (tagsarr) {
-                      let _newTags = newTags.trim().toLowerCase().split(" ");
-                      let __newTags = _newTags.filter((n) => n);
+                    if (newTags.length > 0) {
+                      let allTags;
 
-                      if (__newTags.length > 0) {
-                        let allTags;
+                      if (tags.length === 0) {
+                        allTags = newTags;
+                        dispatch(setTags(newTags));
+                      } else {
+                        allTags = tags.concat(newTags);
+                        dispatch(setTags(allTags));
+                      }
 
-                        if (tagsarr.length === 0) {
-                          allTags = __newTags.join(" ");
-                          setTagsarr(__newTags);
-                        } else {
-                          allTags = tagsarr.concat(__newTags).join(" ");
-                          setTagsarr(allTags.split(" "));
-                        }
-                        if (allTags) {
-                          editTags(allTags);
-                          dispatch(setTags(allTags));
-                          setNewTags("");
-                        }
-                      }
-                      if (tagsarr.length > 0) {
-                        if (tags !== tagsarr.join(" ")) {
-                          let allTags = tagsarr.join(" ");
-                          editTags(allTags);
-                          dispatch(setTags(allTags));
-                        }
-                      }
+                      editTags(allTags);
+                      setNewTags("");
                     }
                   }}
                 >
