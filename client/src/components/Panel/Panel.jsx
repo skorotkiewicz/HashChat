@@ -15,7 +15,7 @@ export const Panel = ({ name }) => {
   const [message, setMessage] = useState("");
   const [myId, setMyId] = useState("");
   const [messages, setMessages] = useState([]);
-  const [bitcoin, setBitcoin] = useState([]);
+  // const [bitcoin, setBitcoin] = useState([]);
   const [typingA, setTypingA] = useState(false);
   const [typingB, setTypingB] = useState([]);
   const [notifi, setNotifi] = useState(true);
@@ -31,17 +31,7 @@ export const Panel = ({ name }) => {
   const tags = useSelector((state) => state.tags);
 
   const refCurrent = useRef([]);
-
-  const chatlog = (message) => {
-    var t = new Date();
-    let time = t.toLocaleTimeString(navigator.language, {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    message = { ...message, time };
-    setMessages((msgs) => [...msgs, message]);
-  };
+  const bitcoin = useRef([]);
 
   useEffect(() => {
     const d = setTimeout(() => {
@@ -55,10 +45,16 @@ export const Panel = ({ name }) => {
   }, [message]);
 
   useEffect(() => {
-    Bitcoin.createWalletAddress((bitcoin) => {
-      let address = bitcoin.address;
-      let pubkey = bitcoin.pubkey;
-      setBitcoin(bitcoin);
+    Bitcoin.createWalletAddress((bc) => {
+      let address = bc.address;
+      let pubkey = bc.pubkey;
+      // setBitcoin(bitcoin);
+      bitcoin.current = {
+        pubkey: bc.pubkey,
+        privkey: bc.privkey,
+        address: bc.address,
+      };
+
       socket.emit(
         "join",
         { name, tags, bitcoin: { address, pubkey } },
@@ -90,8 +86,33 @@ export const Panel = ({ name }) => {
     socket.on("userleft", (uid) => {
       dispatch(addOffline(uid));
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const chatlog = (message) => {
+    let t = new Date();
+    let time = t.toLocaleTimeString(navigator.language, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    if (message.pubkey && bitcoin.current.privkey) {
+      const decrypted = decrypt(
+        message.pubkey,
+        bitcoin.current.privkey,
+        message.message
+      );
+      message = {
+        fromId: message.fromId,
+        fromName: message.fromName,
+        message: [decrypted], // L193
+      };
+    }
+
+    message = { ...message, time };
+    setMessages((msgs) => [...msgs, message]);
+  };
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -100,7 +121,7 @@ export const Panel = ({ name }) => {
       dispatch(setUnread(unread.filter((e) => e !== current.id)));
     }
 
-    const encrypted = encrypt(current.pubkey, bitcoin.privkey, message);
+    const encrypted = encrypt(current.pubkey, bitcoin.current.privkey, message);
 
     if (message && current.id && users.length >= 1) {
       socket.emit("sendMessage", {
@@ -183,7 +204,7 @@ export const Panel = ({ name }) => {
               setMessages={setMessages}
               myId={myId}
               current={current}
-              bitcoin={bitcoin}
+              bitcoin={bitcoin.current}
               decrypt={decrypt}
               typingB={typingB}
               notifi={notifi}

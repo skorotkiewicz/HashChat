@@ -4,7 +4,7 @@ import { WelcomeDetails, BitcoinDetails } from "./Details";
 import { useSelector } from "react-redux";
 
 export const Messages = React.memo(
-  ({ myId, messages, bitcoin, decrypt, notifi, setNotifi }) => {
+  ({ myId, messages, bitcoin, notifi, setNotifi }) => {
     // redux state
     const current = useSelector((state) => state.current);
     const t = useSelector((state) => state.translation);
@@ -51,13 +51,7 @@ export const Messages = React.memo(
                         <Comment.Metadata>
                           <div>{msg.time}</div>
                         </Comment.Metadata>
-                        <Comment.Text>
-                          {decrypt(
-                            current.pubkey,
-                            bitcoin.privkey,
-                            msg.message
-                          )}
-                        </Comment.Text>
+                        <Comment.Text>{msg.message}</Comment.Text>
                       </Comment.Content>
                     </Comment>
                   )}

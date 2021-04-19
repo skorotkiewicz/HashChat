@@ -1,7 +1,11 @@
-const http = require("http");
-const express = require("express");
-const socketio = require("socket.io");
-const cors = require("cors");
+const httpServer = require("http").createServer();
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: ["https://hashchat.js.org", "http://localhost:3000"],
+    // allowedHeaders: ["my-custom-header"],
+    // credentials: true,
+  },
+});
 
 const {
   addUser,
@@ -13,16 +17,7 @@ const {
   // countUsers,
 } = require("./users");
 
-const router = require("./router");
-
-const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-
-app.use(cors());
-app.use(router);
-
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
   // socket.emit           = only to me
   // socket.broadcast.to   = to everbody but not to me
   // io.to(user.room).emit = to specific user
@@ -69,6 +64,7 @@ io.on("connect", (socket) => {
     if (user) {
       io.to(message.to).emit("message", {
         fromName: user.name,
+        pubkey: user.bitcoin.pubkey,
         fromId: socket.id,
         message: message.message,
       });
@@ -107,17 +103,12 @@ const sendUsersList = (users, update = false) => {
         }
       }
     });
-    if (myUsersUpdate.length >= 1) {
-      io.to(_user.id).emit("users", myUsersUpdate);
-    }
-    if (update) {
+    if (myUsersUpdate.length >= 1 || update) {
       io.to(_user.id).emit("users", myUsersUpdate);
     }
   });
 };
 
-server.listen(process.env.PORT || 5000, () =>
-  console.log(`Server has started.`)
-);
+httpServer.listen(process.env.PORT || 5000);
 
 // git push heroku master
